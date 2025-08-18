@@ -17,6 +17,7 @@ while True:
             telefone = input("Telefone: ")
             cep = input("CEP: ")
             criar_funcionario(nome, email, telefone, cep)
+            print("Funcionario adicionado.")
 
         elif op_f == 2:  # remover
             id_func = int(input("ID do funcionário: "))
@@ -29,6 +30,7 @@ while True:
             telefone = input("Telefone: ")
             cep = input("CEP: ")
             atualizar_funcionario(id_func, nome, email, telefone, cep)
+            tela.limpaTela()
 
         elif op_f == 4:  # listar
             funcionarios = listar_funcionarios()

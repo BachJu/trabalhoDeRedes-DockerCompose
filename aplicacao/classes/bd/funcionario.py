@@ -59,20 +59,20 @@ class Funcionario():
             cep = str(self.get_cep())
 
             sql_insert = "INSERT INTO Funcionario(Nome, Email, Telefone, CEP)" \
-            "             VALUES({%S}, {%S}, {%s}, {%s})" % (nome, email, telefone. cep)
+            "             VALUES(%s, %s, %s, %s)"
 
             with con.cursor() as cursor:
-                cursor.execute(sql_insert)
+                cursor.execute(sql_insert, (nome, email, telefone, cep))
                 con.commit()
 
     def deletar_funcionario(self):
         with Conexao() as con:
             id = str(self.get_id())
 
-            sql_delete = "DELETE FROM Funcionario WHERE Id = {%s}" % id
+            sql_delete = "DELETE FROM Funcionario WHERE Id = {%s}"
 
             with con.cursor() as cursor:
-                cursor.execute(sql_delete)
+                cursor.execute(sql_delete, id)
                 con.commit()
 
     def atualizar_funcionario(self):
@@ -88,10 +88,10 @@ class Funcionario():
             "                 Email = {%s}," \
             "                 Telefone = {%s}," \
             "                 CEP = {%s}" \
-            "             WHERE Id = {%s};" % (nome, email, telefone, cep, id)
+            "             WHERE Id = {%s};"
 
             with con.cursor() as cursor:
-                cursor.execute(sql_update)
+                cursor.execute(sql_update, (nome, email, telefone, cep, id))
                 con.commit()
 
     def recuperar_funcionarios(self):
@@ -128,10 +128,10 @@ class Funcionario():
     def recuperar_dados(self):
         with Conexao() as con:
             id_recuperar = str(self.get_id())
-            sql_select = "SELECT * FROM Funcionario WHERE Id = {%s};" % id_recuperar
+            sql_select = "SELECT * FROM Funcionario WHERE Id = {%s};"
 
             with con.cursor() as cursor:
-                cursor.execute(sql_select)
+                cursor.execute(sql_select, id_recuperar)
                 lista = cursor.fetchall()
 
                 return lista
