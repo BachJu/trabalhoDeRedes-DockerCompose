@@ -40,7 +40,7 @@ class Tela():
         '''
         self.limpaTela()
         self.separador()
-        print("SISTEMA DE UM MERCADO :) \n")
+        print("SISTEMA DE UM MERCADO")
         self.separador()
 
         opcoes = [1, 2, 3, 9]
@@ -48,10 +48,10 @@ class Tela():
 
         while opcao not in opcoes:
             self.separador()
-            print("[1] Funcionario\n" \
-            "      [2] Venda\n" \
-            "      [3] Produto\n" \
-            "      [9] Sair do programa\n")
+            print("\t[1] Funcionario\n" \
+            "      \t[2] Venda\n" \
+            "      \t[3] Produto\n" \
+            "      \t[9] Sair do programa")
             print("-"*50)
             opcao = int(input("Opcao: "))
             self.separador()
@@ -68,7 +68,7 @@ class Tela():
         '''
         self.limpaTela()
         self.separador()
-        print("MENU - FUNCIONARIOS\n")
+        print("MENU - FUNCIONARIOS")
         self.separador()
 
         opcoes = [1, 2, 3, 4, 9]
@@ -76,11 +76,11 @@ class Tela():
 
         while opcao not in opcoes:
             self.separador()
-            print("[1] Adicionar novo funcionario\n" \
-            "      [2] Remover um funcionario\n" \
-            "      [3] Atualizar informacoes de um funcionario\n" \
-            "      [4] Listar todos os funcionario\n" \
-            "      [9] Sair")
+            print("\t[1] Adicionar novo funcionario\n" \
+            "      \t[2] Remover um funcionario\n" \
+            "      \t[3] Atualizar informacoes de um funcionario\n" \
+            "      \t[4] Listar todos os funcionario\n" \
+            "      \t[9] Sair")
             print("-"*50)
             opcao = int(input("Opcao: "))
             self.separador()
@@ -97,7 +97,7 @@ class Tela():
         '''
         self.limpaTela()
         self.separador()
-        print("MENU - VENDA\n")
+        print("MENU - VENDA")
         self.separador()
 
         opcoes = [1, 2, 3, 4, 9]
@@ -105,11 +105,11 @@ class Tela():
 
         while opcao not in opcoes:
             self.separador()
-            print("[1] Adicionar nova venda\n" \
-            "      [2] Remover uma venda\n" \
-            "      [3] Atualizar informacoes de uma venda\n" \
-            "      [4] Listar todos as vendas\n" \
-            "      [9] Sair")
+            print("\t[1] Adicionar nova venda\n" \
+            "      \t[2] Remover uma venda\n" \
+            "      \t[3] Atualizar informacoes de uma venda\n" \
+            "      \t[4] Listar todos as vendas\n" \
+            "      \t[9] Sair")
             print("-"*50)
             opcao = int(input("Opcao: "))
             self.separador()
@@ -126,7 +126,7 @@ class Tela():
         '''
         self.limpaTela()
         self.separador()
-        print("MENU - PRODUTO\n")
+        print("MENU - PRODUTO")
         self.separador()
 
         opcoes = [1, 2, 3, 4, 9]
@@ -134,11 +134,11 @@ class Tela():
 
         while opcao not in opcoes:
             self.separador()
-            print("[1] Adicionar novo produto\n" \
-            "      [2] Remover um produto\n" \
-            "      [3] Atualizar informacoes de um produto\n" \
-            "      [4] Listar todos os produto\n" \
-            "      [9] Sair")
+            print("\t[1] Adicionar novo produto\n" \
+            "      \t[2] Remover um produto\n" \
+            "      \t[3] Atualizar informacoes de um produto\n" \
+            "      \t[4] Listar todos os produto\n" \
+            "      \t[9] Sair")
             print("-"*50)
             opcao = int(input("Opcao: "))
             self.separador()
