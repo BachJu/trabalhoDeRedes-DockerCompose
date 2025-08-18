@@ -1,4 +1,4 @@
-from aplicacao.classes.bd.funcionario import Funcionario
+from classes.bd.funcionario import Funcionario
 
 def criar_funcionario(nome, email, telefone, cep):
     f = Funcionario()

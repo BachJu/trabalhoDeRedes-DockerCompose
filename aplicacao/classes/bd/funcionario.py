@@ -1,4 +1,4 @@
-from aplicacao.classes.bd.conexao import Conexao
+from classes.bd.conexao import Conexao
 
 '''
     Id INTEGER PRIMARY KEY,

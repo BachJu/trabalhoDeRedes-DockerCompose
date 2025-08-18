@@ -1,7 +1,7 @@
-from aplicacao.classes.telas import Tela
-from aplicacao.classes.funcoes.funcionario import *
-from aplicacao.classes.funcoes.produto import *
-from aplicacao.classes.funcoes.venda import *
+from classes.telas import Tela
+from classes.funcoes.funcionario import *
+from classes.funcoes.produto import *
+from classes.funcoes.venda import *
 
 tela = Tela()
 

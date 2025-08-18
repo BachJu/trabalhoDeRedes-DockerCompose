@@ -1,4 +1,4 @@
-from aplicacao.classes.bd.produto import Produto
+from classes.bd.produto import Produto
 
 def criar_produto(nome, preco, quantidade):
     p = Produto()

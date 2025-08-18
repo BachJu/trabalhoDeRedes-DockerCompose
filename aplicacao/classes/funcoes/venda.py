@@ -1,4 +1,4 @@
-from aplicacao.classes.bd.venda import Venda
+from classes.bd.venda import Venda
 
 def criar_venda(data, status, id_funcionario):
     v = Venda()

@@ -1,13 +1,13 @@
 import os
-from aplicacao.classes.funcoes.funcionario import (
+from classes.funcoes.funcionario import (
     criar_funcionario, listar_funcionarios, atualizar_funcionario,
     deletar_funcionario, buscar_funcionario_por_id
 )
-from aplicacao.classes.funcoes.produto import (
+from classes.funcoes.produto import (
     criar_produto, listar_produtos, atualizar_produto,
     deletar_produto, buscar_produto_por_id
 )
-from aplicacao.classes.funcoes.venda import (
+from classes.funcoes.venda import (
     criar_venda, listar_vendas, atualizar_venda,
     deletar_venda, buscar_venda_por_id
 )
