@@ -1,4 +1,4 @@
-import psycopg2
+import mysql.connector
 from dotenv import load_dotenv
 import os
 
@@ -7,12 +7,10 @@ load_dotenv()
 class Conexao:
 
     def __init__(self):
-        self.con = psycopg2.connect(
-            host=os.getenv('DB_HOST'),
-            port=os.getenv('DB_PORT'),
-            database=os.getenv('DB_NAME'),
-            user=os.getenv('DB_USER'),
-            password=os.getenv('DB_PASSWORD')
+        self.con = mysql.connector.connect(
+            user=os.getenv('MYSQL_USER'),
+            password=os.getenv('MYSQL_PASSWORD'),
+            database=os.getenv('MYSQL_DATABASE')
         )
 
     def __enter__(self):

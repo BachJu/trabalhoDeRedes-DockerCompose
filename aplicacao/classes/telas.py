@@ -5,7 +5,7 @@ from classes.venda import Venda
 
 class Tela():
 
-    def limpaTela():
+    def limpaTela(self):
         '''
         Limpa a tela de acordo com o sistema operacional
         '''
@@ -14,7 +14,7 @@ class Tela():
         else:
             _ = system("clear")
     
-    def separador():
+    def separador(self):
         '''
         Imprime um separador para melhor visualização no terminal
         '''
