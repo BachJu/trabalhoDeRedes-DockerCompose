@@ -31,7 +31,8 @@ CREATE TABLE IF NOT EXISTS Tem (
     fk_venda_idVenda INTEGER,
     quantidadeVendida INTEGER,
     precoNaVenda FLOAT(10, 2),
-    Desconto NUMERIC(10, 2)
+    Desconto NUMERIC(10, 2),
+    PRIMARY KEY (idTem)
 );
  
 ALTER TABLE Venda ADD CONSTRAINT FK_Venda_2

@@ -50,7 +50,7 @@ class Venda():
             IdFuncionario = str(self.get_IdFuncionario())
 
             sql_insert = "INSERT INTO Venda(Data, Status, fk_Funcionario_Id)" \
-            "                         VALUES ({}, {}, {}, {});".format(data, status, IdFuncionario)
+            "                         VALUES ({%s}, {%s}, {%s}, {%s});" % (data, status, IdFuncionario)
 
             with con.cursor() as cursor:
                 cursor.execute(sql_insert)
@@ -60,7 +60,7 @@ class Venda():
         with Conexao() as con:
             id = str(self.get_id())
 
-            sql_delete = "DELETE FROM Venda WHERE IdVenda = {};".format(id) 
+            sql_delete = "DELETE FROM Venda WHERE IdVenda = {%s};" % id 
 
             with con.cursor() as cursor:
                 cursor.execute(sql_delete)
@@ -74,10 +74,10 @@ class Venda():
             IdFuncionario = str(self.get_IdFuncionario())
 
             sql_update = "UPDATE Venda" \
-            "             SET Data = {}," \
-            "                 Status = {}," \
-            "                 fk_Funcionario_Id = {}," \
-            "             WHERE IdVenda = {};".format(data, status, IdFuncionario, id)
+            "             SET Data = {%s}," \
+            "                 Status = {%s}," \
+            "                 fk_Funcionario_Id = {%s}," \
+            "             WHERE IdVenda = {%s};" % (data, status, IdFuncionario, id)
 
             with con.cursor() as cursor:
                 cursor.execute(sql_update)
@@ -117,7 +117,7 @@ class Venda():
     def recuperar_dados(self):
         with Conexao() as con:
             id_recuperar = str(self.get_id())
-            sql_select = "SELECT * FROM Venda WHERE IdVenda = {};".format(id_recuperar)
+            sql_select = "SELECT * FROM Venda WHERE IdVenda = {%s};" % id_recuperar
 
             with con.cursor() as cursor:
                 cursor.execute(sql_select)

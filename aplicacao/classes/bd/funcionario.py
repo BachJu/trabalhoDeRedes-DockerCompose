@@ -59,7 +59,7 @@ class Funcionario():
             cep = str(self.get_cep())
 
             sql_insert = "INSERT INTO Funcionario(Nome, Email, Telefone, CEP)" \
-            "                         VALUES ({}, {}, {}, {});".format(nome, email, telefone, cep)
+            "             VALUES({%S}, {%S}, {%s}, {%s})" % (nome, email, telefone. cep)
 
             with con.cursor() as cursor:
                 cursor.execute(sql_insert)
@@ -69,7 +69,7 @@ class Funcionario():
         with Conexao() as con:
             id = str(self.get_id())
 
-            sql_delete = "DELETE FROM Funcionario WHERE Id = {};".format(id) 
+            sql_delete = "DELETE FROM Funcionario WHERE Id = {%s}" % id
 
             with con.cursor() as cursor:
                 cursor.execute(sql_delete)
@@ -84,11 +84,11 @@ class Funcionario():
             cep = str(self.get_cep())
 
             sql_update = "UPDATE Funcionario" \
-            "             SET Nome = {}," \
-            "                 Email = {}," \
-            "                 Telefone = {}," \
-            "                 CEP = {}" \
-            "             WHERE Id = {};".format(nome, email, telefone, cep, id)
+            "             SET Nome = {%s}," \
+            "                 Email = {%s}," \
+            "                 Telefone = {%s}," \
+            "                 CEP = {%s}" \
+            "             WHERE Id = {%s};" % (nome, email, telefone, cep, id)
 
             with con.cursor() as cursor:
                 cursor.execute(sql_update)
@@ -99,7 +99,7 @@ class Funcionario():
             sql_select = "SELECT * FROM Funcionario ORDER BY Id;"
 
             print("#"*50)
-            print("Funcionarios:\n")
+            print("Funcionarios:")
             print("-"*50)
 
             with con.cursor() as cursor:
@@ -128,7 +128,7 @@ class Funcionario():
     def recuperar_dados(self):
         with Conexao() as con:
             id_recuperar = str(self.get_id())
-            sql_select = "SELECT * FROM Funcionario WHERE Id = {};".format(id_recuperar)
+            sql_select = "SELECT * FROM Funcionario WHERE Id = {%s};" % id_recuperar
 
             with con.cursor() as cursor:
                 cursor.execute(sql_select)
