@@ -1,7 +1,7 @@
 /* Lógico_1: */
 
 CREATE TABLE Funcionario (
-    Id INTEGER PRIMARY KEY,
+    Id SERIAL PRIMARY KEY,
     Nome VARCHAR,
     Email VARCHAR,
     Telefone INTEGER,
@@ -9,16 +9,16 @@ CREATE TABLE Funcionario (
 );
 
 CREATE TABLE Venda (
-    IdVenda INTEGER PRIMARY KEY,
+    IdVenda SERIAL PRIMARY KEY,
     Data NUMERIC,
     Status VARCHAR,
     fk_Funcionario_Id INTEGER
 );
 
 CREATE TABLE Produto (
-    IdProduto INTEGER PRIMARY KEY,
+    IdProduto SERIAL PRIMARY KEY,
     Nome VARCHAR,
-    preco INTEGER,
+    Preco NUMERIC(10, 2),
     Quantidade INTEGER
 );
 
@@ -26,8 +26,8 @@ CREATE TABLE Tem (
     fk_Produto_IdProduto INTEGER,
     fk_Venda_IdVenda INTEGER,
     QuantidadeVendida INTEGER,
-    PrecoNaVenda INTEGER,
-    Desconto INTEGER
+    PrecoNaVenda NUMERIC(10, 2),
+    Desconto NUMERIC(10, 2)
 );
  
 ALTER TABLE Venda ADD CONSTRAINT FK_Venda_2

@@ -51,7 +51,6 @@ class Funcionario():
     '''
     Funções para realizar com o BD
     '''
-
     def inserir_funcionario(self):
         with Conexao() as con:
             nome = str(self.get_nome())
@@ -105,12 +104,12 @@ class Funcionario():
 
             with con.cursor() as cursor:
                 cursor.execute(sql_select)
-                print('\tID | nome')
+                print('\tID | nome | email | telefone | CEP')
 
                 for record in cursor.fetchall():
                     print('-'*50)
                     print("\t")
-                    print(record[0], '|', record[1])
+                    print(record[0], '|', record[1], '|', record[2], '|', record[3], '|', record[4])
 
             print("#"*50)
 
