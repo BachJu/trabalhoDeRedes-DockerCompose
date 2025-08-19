@@ -46,10 +46,10 @@ class Produto():
     def inserir_produto(self):
         with Conexao() as con:
             nome = str(self.get_nome())
-            preco = str(self.get_nome())
+            preco = str(self.get_preco())
             quantidade = str(self.get_quantidade())
 
-            sql_insert = "INSERT INTO Produto(nome, Preco, quantidade)" \
+            sql_insert = "INSERT INTO Produto(nome, preco, quantidade)" \
             "                         VALUES (%s, %s, %s);"
 
             with con.cursor() as cursor:
@@ -66,29 +66,29 @@ class Produto():
                 cursor.execute(sql_delete, (id,))
                 con.commit()
 
-    def atualizar_venda(self):
+    def atualizar_produto(self):
         with Conexao() as con:
             id = str(self.get_id())
             nome = str(self.get_nome())
-            preco = str(self.get_nome())
+            preco = str(self.get_preco())
             quantidade = str(self.get_quantidade())
 
             sql_update = "UPDATE Produto" \
             "             SET nome = %s," \
-            "                 Preco = %s," \
-            "                 quantidade = %s," \
+            "                 preco = %s," \
+            "                 quantidade = %s" \
             "             WHERE idProduto = %s;"
 
             with con.cursor() as cursor:
                 cursor.execute(sql_update, (nome, preco, quantidade, id))
                 con.commit()
 
-    def recuperar_vendas(self):
+    def recuperar_produtos(self):
         with Conexao() as con:
             sql_select = "SELECT * FROM Produto ORDER BY idProduto;"
 
             print("#"*50)
-            print("Produtos:\n")
+            print("Produtos:")
             print("-"*50)
 
             with con.cursor() as cursor:
@@ -114,7 +114,7 @@ class Produto():
     def recuperar_dados(self):
         with Conexao() as con:
             id_recuperar = str(self.get_id())
-            sql_select = "SELECT * FROM Produto WHERE idProdutodVenda = %s;"
+            sql_select = "SELECT * FROM Produto WHERE idProduto = %s;"
 
             with con.cursor() as cursor:
                 cursor.execute(sql_select, (id_recuperar,))

@@ -55,6 +55,19 @@ while True:
             criar_produto(nome, preco, quantidade)
             print("-"*50)
             print("Novo produto adicionado com sucesso.")
+        elif op_p == 2:
+            id_prod = int(input("ID do produto: "))
+            deletar_produto(id_prod)
+            print("-"*50)
+            print("Informacoes de um produto deletada com sucesso.")
+        elif op_p == 3:
+            id_prod = int(input("ID do produto: "))
+            nome = input("Nome: ")
+            preco = float(input("Preço: "))
+            quantidade = int(input("Quantidade: "))
+            atualizar_produto(id_prod, nome, preco, quantidade)
+            print("-"*50)
+            print("Informacoes de um produto atualizada com sucesso.")
         elif op_p == 4:
             produtos = listar_produtos()
             if produtos is not None:
@@ -74,6 +87,19 @@ while True:
             criar_venda(data, status, id_funcionario)
             print("-"*50)
             print("Nova venda adicionada com sucesso.")
+        elif op_v == 2:
+            id_venda = int(input("ID da venda: "))
+            deletar_venda(id_venda)
+            print("-"*50)
+            print("Informacoes de uma venda deletada com sucesso.")
+        elif op_v == 3:
+            id_venda = int(input("ID da venda: "))
+            data = input("Data (YYYY-MM-DD): ")
+            status = input("Status: ")
+            id_funcionario = int(input("ID Funcionário: "))
+            atualizar_venda(id_venda, data, status, id_funcionario)
+            print("-"*50)
+            print("Informacoes de uma venda atualizada com sucesso.")
         elif op_v == 4:
             vendas = listar_vendas()
             if vendas is not None:
