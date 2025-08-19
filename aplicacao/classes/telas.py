@@ -38,7 +38,6 @@ class Tela():
         -------
         Retorna a opção escolhida pelo usuário    
         '''
-        self.limpaTela()
         self.separador()
         print("SISTEMA DE UM MERCADO")
         self.separador()

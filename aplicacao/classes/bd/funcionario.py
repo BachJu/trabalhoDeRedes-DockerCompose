@@ -1,11 +1,11 @@
 from classes.bd.conexao import Conexao
 
 '''
-    Id INTEGER PRIMARY KEY,
-    Nome VARCHAR,
-    Email VARCHAR,
-    Telefone INTEGER,
-    CEP VARCHAR
+    id INTEGER PRIMARY KEY,
+    nome VARCHAR,
+    email VARCHAR,
+    telefone INTEGER,
+    cep VARCHAR
 '''
 
 class Funcionario():
@@ -58,7 +58,7 @@ class Funcionario():
             telefone = str(self.get_telefone())
             cep = str(self.get_cep())
 
-            sql_insert = "INSERT INTO Funcionario(Nome, Email, Telefone, CEP)" \
+            sql_insert = "INSERT INTO Funcionario(nome, email, telefone, cep)" \
             "             VALUES(%s, %s, %s, %s)"
 
             with con.cursor() as cursor:
@@ -69,10 +69,10 @@ class Funcionario():
         with Conexao() as con:
             id = str(self.get_id())
 
-            sql_delete = "DELETE FROM Funcionario WHERE Id = {%s}"
+            sql_delete = "DELETE FROM Funcionario WHERE id = %s;"
 
             with con.cursor() as cursor:
-                cursor.execute(sql_delete, id)
+                cursor.execute(sql_delete, (id,))
                 con.commit()
 
     def atualizar_funcionario(self):
@@ -84,11 +84,11 @@ class Funcionario():
             cep = str(self.get_cep())
 
             sql_update = "UPDATE Funcionario" \
-            "             SET Nome = {%s}," \
-            "                 Email = {%s}," \
-            "                 Telefone = {%s}," \
-            "                 CEP = {%s}" \
-            "             WHERE Id = {%s};"
+            "             SET nome = %s," \
+            "                 email = %s," \
+            "                 telefone = %s," \
+            "                 cep = %s" \
+            "             WHERE id = %s;"
 
             with con.cursor() as cursor:
                 cursor.execute(sql_update, (nome, email, telefone, cep, id))
@@ -96,7 +96,7 @@ class Funcionario():
 
     def recuperar_funcionarios(self):
         with Conexao() as con:
-            sql_select = "SELECT * FROM Funcionario ORDER BY Id;"
+            sql_select = "SELECT * FROM Funcionario ORDER BY id;"
 
             print("#"*50)
             print("Funcionarios:")
@@ -104,18 +104,15 @@ class Funcionario():
 
             with con.cursor() as cursor:
                 cursor.execute(sql_select)
-                print('\tID | nome | email | telefone | CEP')
+                print('\tid | nome | email | telefone | cep')
 
                 for record in cursor.fetchall():
                     print('-'*50)
-                    print("\t")
-                    print(record[0], '|', record[1], '|', record[2], '|', record[3], '|', record[4])
-
-            print("#"*50)
+                    print('\t', record[0], '|', record[1], '|', record[2], '|', record[3], '|', record[4])
 
     def recuperar_ids(self):
         with Conexao() as con:
-            sql_select = "SELECT * FROM Funcionario ORDER BY Id;"
+            sql_select = "SELECT * FROM Funcionario ORDER BY id;"
             lista_id = []
 
             with con.cursor() as cursor:
@@ -128,10 +125,10 @@ class Funcionario():
     def recuperar_dados(self):
         with Conexao() as con:
             id_recuperar = str(self.get_id())
-            sql_select = "SELECT * FROM Funcionario WHERE Id = {%s};"
+            sql_select = "SELECT * FROM Funcionario WHERE id = %s;"
 
             with con.cursor() as cursor:
-                cursor.execute(sql_select, id_recuperar)
+                cursor.execute(sql_select, (id_recuperar,))
                 lista = cursor.fetchall()
 
                 return lista

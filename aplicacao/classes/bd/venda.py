@@ -1,9 +1,9 @@
 from classes.bd.conexao import Conexao
 
 '''
-    IdVenda INTEGER PRIMARY KEY,
-    Data NUMERIC,
-    Status VARCHAR,
+    idVenda INTEGER PRIMARY KEY,
+    data NUMERIC,
+    status VARCHAR,
     fk_Funcionario_Id INTEGER
 '''
 
@@ -49,21 +49,21 @@ class Venda():
             status = str(self.get_status())
             IdFuncionario = str(self.get_IdFuncionario())
 
-            sql_insert = "INSERT INTO Venda(Data, Status, fk_Funcionario_Id)" \
-            "                         VALUES ({%s}, {%s}, {%s}, {%s});" % (data, status, IdFuncionario)
+            sql_insert = "INSERT INTO Venda(data, status, fk_Funcionario_Id)" \
+            "                         VALUES (%s, %s, %s, %s);"
 
             with con.cursor() as cursor:
-                cursor.execute(sql_insert)
+                cursor.execute(sql_insert, (data, status, IdFuncionario))
                 con.commit()
 
     def deletar_venda(self):
         with Conexao() as con:
             id = str(self.get_id())
 
-            sql_delete = "DELETE FROM Venda WHERE IdVenda = {%s};" % id 
+            sql_delete = "DELETE FROM Venda WHERE idVenda = %s;" 
 
             with con.cursor() as cursor:
-                cursor.execute(sql_delete)
+                cursor.execute(sql_delete, (id,))
                 con.commit()
 
     def atualizar_venda(self):
@@ -74,18 +74,18 @@ class Venda():
             IdFuncionario = str(self.get_IdFuncionario())
 
             sql_update = "UPDATE Venda" \
-            "             SET Data = {%s}," \
-            "                 Status = {%s}," \
-            "                 fk_Funcionario_Id = {%s}," \
-            "             WHERE IdVenda = {%s};" % (data, status, IdFuncionario, id)
+            "             SET data = %s," \
+            "                 status = %s," \
+            "                 fk_Funcionario_Id = %s," \
+            "             WHERE idVenda = %s;"
 
             with con.cursor() as cursor:
-                cursor.execute(sql_update)
+                cursor.execute(sql_update, (data, status, IdFuncionario, id))
                 con.commit()
 
     def recuperar_vendas(self):
         with Conexao() as con:
-            sql_select = "SELECT * FROM Venda ORDER BY IdVenda;"
+            sql_select = "SELECT * FROM Venda ORDER BY idVenda;"
 
             print("#"*50)
             print("Vendas:\n")
@@ -93,18 +93,17 @@ class Venda():
 
             with con.cursor() as cursor:
                 cursor.execute(sql_select)
-                print('\tIdVenda | data | status | IdFuncionario')
+                print('\tidVenda | data | status | IdFuncionario')
 
                 for record in cursor.fetchall():
-                    print('-'*50)
                     print("\t")
-                    print(record[0], '|', record[1], '|', record[2], '|', record[3])
+                    print('\t', record[0], '|', record[1], '|', record[2], '|', record[3])
 
             print("#"*50)
 
     def recuperar_ids(self):
         with Conexao() as con:
-            sql_select = "SELECT * FROM Venda ORDER BY IdVenda;"
+            sql_select = "SELECT * FROM Venda ORDER BY idVenda;"
             lista_id = []
 
             with con.cursor() as cursor:
@@ -117,10 +116,10 @@ class Venda():
     def recuperar_dados(self):
         with Conexao() as con:
             id_recuperar = str(self.get_id())
-            sql_select = "SELECT * FROM Venda WHERE IdVenda = {%s};" % id_recuperar
+            sql_select = "SELECT * FROM Venda WHERE idVenda = %s;"
 
             with con.cursor() as cursor:
-                cursor.execute(sql_select)
+                cursor.execute(sql_select, (id_recuperar,))
                 lista = cursor.fetchall()
 
                 return lista

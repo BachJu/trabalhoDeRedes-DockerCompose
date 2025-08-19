@@ -1,10 +1,10 @@
 from classes.bd.conexao import Conexao
 
 '''
-    IdProduto INTEGER PRIMARY KEY,
-    Nome VARCHAR,
+    idProduto INTEGER PRIMARY KEY,
+    nome VARCHAR,
     preco INTEGER,
-    Quantidade INTEGER
+    quantidade INTEGER
 '''
 
 class Produto():
@@ -49,21 +49,21 @@ class Produto():
             preco = str(self.get_nome())
             quantidade = str(self.get_quantidade())
 
-            sql_insert = "INSERT INTO Produto(Nome, Preco, Quantidade)" \
-            "                         VALUES ({%s}, {%s}, {%s});" % (nome, preco, quantidade)
+            sql_insert = "INSERT INTO Produto(nome, Preco, quantidade)" \
+            "                         VALUES (%s, %s, %s);"
 
             with con.cursor() as cursor:
-                cursor.execute(sql_insert)
+                cursor.execute(sql_insert, (nome, preco, quantidade))
                 con.commit()
 
     def deletar_produto(self):
         with Conexao() as con:
             id = str(self.get_id())
 
-            sql_delete = "DELETE FROM Produto WHERE IdProduto = {%s};" % id 
+            sql_delete = "DELETE FROM Produto WHERE idProduto = %s;"
 
             with con.cursor() as cursor:
-                cursor.execute(sql_delete)
+                cursor.execute(sql_delete, (id,))
                 con.commit()
 
     def atualizar_venda(self):
@@ -74,18 +74,18 @@ class Produto():
             quantidade = str(self.get_quantidade())
 
             sql_update = "UPDATE Produto" \
-            "             SET Nome = {%s}," \
-            "                 Preco = {%s}," \
-            "                 Quantidade = {%s}," \
-            "             WHERE IdProduto = {%s};" % (nome, preco, quantidade, id)
+            "             SET nome = %s," \
+            "                 Preco = %s," \
+            "                 quantidade = %s," \
+            "             WHERE idProduto = %s;"
 
             with con.cursor() as cursor:
-                cursor.execute(sql_update)
+                cursor.execute(sql_update, (nome, preco, quantidade, id))
                 con.commit()
 
     def recuperar_vendas(self):
         with Conexao() as con:
-            sql_select = "SELECT * FROM Produto ORDER BY IdProduto;"
+            sql_select = "SELECT * FROM Produto ORDER BY idProduto;"
 
             print("#"*50)
             print("Produtos:\n")
@@ -93,18 +93,15 @@ class Produto():
 
             with con.cursor() as cursor:
                 cursor.execute(sql_select)
-                print('\tIdProduto | Nome | Preco | Quantidade')
+                print('\tidProduto | nome | Preco | quantidade')
 
                 for record in cursor.fetchall():
                     print('-'*50)
-                    print("\t")
-                    print(record[0], '|', record[1], '|', record[2], '|', record[3])
-
-            print("#"*50)
+                    print('\t', record[0], '|', record[1], '|', record[2], '|', record[3])
 
     def recuperar_ids(self):
         with Conexao() as con:
-            sql_select = "SELECT * FROM Produto ORDER BY IdProduto;"
+            sql_select = "SELECT * FROM Produto ORDER BY idProduto;"
             lista_id = []
 
             with con.cursor() as cursor:
@@ -117,10 +114,10 @@ class Produto():
     def recuperar_dados(self):
         with Conexao() as con:
             id_recuperar = str(self.get_id())
-            sql_select = "SELECT * FROM Produto WHERE IdProdutodVenda = {%s};" % id_recuperar
+            sql_select = "SELECT * FROM Produto WHERE idProdutodVenda = %s;"
 
             with con.cursor() as cursor:
-                cursor.execute(sql_select)
+                cursor.execute(sql_select, (id_recuperar,))
                 lista = cursor.fetchall()
 
                 return lista
