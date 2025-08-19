@@ -4,7 +4,7 @@ from classes.bd.conexao import Conexao
     idVenda INTEGER PRIMARY KEY,
     data NUMERIC,
     status VARCHAR,
-    fk_Funcionario_Id INTEGER
+    fk_funcionario_id INTEGER
 '''
 
 class Venda():
@@ -38,7 +38,7 @@ class Venda():
         self.__IdFuncionario = IdFuncionario
     
     def get_IdFuncionario(self):
-        return self.__fkFuncionarioId
+        return self.__IdFuncionario
     
     '''
     Funções para realizar com o BD
@@ -49,8 +49,8 @@ class Venda():
             status = str(self.get_status())
             IdFuncionario = str(self.get_IdFuncionario())
 
-            sql_insert = "INSERT INTO Venda(data, status, fk_Funcionario_Id)" \
-            "                         VALUES (%s, %s, %s, %s);"
+            sql_insert = "INSERT INTO Venda(data, status, fk_funcionario_id)" \
+            "                         VALUES (%s, %s, %s);"
 
             with con.cursor() as cursor:
                 cursor.execute(sql_insert, (data, status, IdFuncionario))
@@ -76,7 +76,7 @@ class Venda():
             sql_update = "UPDATE Venda" \
             "             SET data = %s," \
             "                 status = %s," \
-            "                 fk_Funcionario_Id = %s," \
+            "                 fk_funcionario_id = %s" \
             "             WHERE idVenda = %s;"
 
             with con.cursor() as cursor:
@@ -96,7 +96,6 @@ class Venda():
                 print('\tidVenda | data | status | IdFuncionario')
 
                 for record in cursor.fetchall():
-                    print("\t")
                     print('\t', record[0], '|', record[1], '|', record[2], '|', record[3])
 
             print("#"*50)
